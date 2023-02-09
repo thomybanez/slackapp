@@ -1,21 +1,13 @@
 import './App.css';
+import SlackInterface from './pages/SlackInterface.js'
+import SignUp from './js-component/SignUp';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">        
-        <p>
-          SLACK APP
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
-      </header>
-    </div>
+    <>
+        <SignUp />
+        <SlackInterface />
+    </>
   );
 }
 

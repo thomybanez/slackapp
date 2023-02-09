@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+
+.slack_interface {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.message_interface {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    align-self: flex-end;
+    margin-bottom: 30px;
+}
