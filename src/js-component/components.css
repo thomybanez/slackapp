@@ -1,0 +1,79 @@
+
+
+/* message bar */
+.message_bar {
+    width: 95%;
+    border: 1px solid white;
+    border-radius: 6px;
+    padding: 5px;
+    background-color: rgb(150,150,150);
+}
+
+.message_field {
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.input_field {
+    border: none;
+    outline: none;
+    color: white;
+    width: 100%;
+    background-color: rgb(150,150,150);
+}
+
+::placeholder {
+    color: white;
+}
+
+
+/* sidebar & memberlist */
+.sidebar {
+    height: 100%;
+    width: 15%;
+    outline: none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: rgb(29,97,194);
+    color: white;
+}
+.sidebar_content {
+    margin: 0 20px;
+}
+.sidebar_headers {
+    display: flex;
+    justify-content: space-between;
+}
+.sidebar button {
+    background-color: rgb(29,97,194);
+    border: none;
+    color: white;
+    font-size: 30px;
+}
+
+/* message log */
+
+.message_log {
+    width: 95%;
+    display: flex;
+}
+.message_name_and_time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.message_name {
+    font-size: 20px;
+    font-weight: 700;
+}
+.message_time {
+    margin-left: 30px;
+}
+.user_icon {
+    width: 40px;
+    height: 40px;
+    margin: 20px 10px;
+}
