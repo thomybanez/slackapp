@@ -1,7 +1,7 @@
-import React from 'react'
 import './components.css'
 
-function Sidebar() {
+function Sidebar(props) {
+  const { showPopup } = props
   return (
     <>
           <div className='sidebar'>
@@ -12,7 +12,7 @@ function Sidebar() {
               <h5 className=''>Home Page</h5>
               <div className='sidebar_headers'>
                 <h3>Channels</h3>
-                <button>+</button>
+                <button onClick={showPopup}>+</button>
               </div>
               <div>
                 <h5>#Channel 1</h5>
