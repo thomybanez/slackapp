@@ -4,11 +4,11 @@ import { AiOutlineClose } from 'react-icons/ai'
 import './components.css'
 import { useState } from 'react'
 
-const AddChannelPopup = (props) => {
+const CreateChannel = (props) => {
   const { popup, showPopup } = props
   const [channelData, setChannelData] = useState({
       name: "",
-      user_ids: ""
+      user_ids: []
     })
   const { name, user_ids } = channelData
 
@@ -17,7 +17,7 @@ const AddChannelPopup = (props) => {
         <div className='channel_form_content'>
           <form id="form" onSubmit={SubmitHandler}>
             <AiOutlineClose className='close_btn' onClick={showPopup} />
-            <h3>Add Channel</h3>
+            <h3>Create Channel</h3>
             <label>Channel Name:</label>
             <input type="text" name="name" value={name} onChange={(e) => HandleChange(e, setChannelData)} />
             <input id="submit" type="submit" />
@@ -27,4 +27,4 @@ const AddChannelPopup = (props) => {
     )
   }
 
-  export default AddChannelPopup
+  export default CreateChannel

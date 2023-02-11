@@ -20,7 +20,7 @@ function Sidebar(props) {
               </div>
               <div className='sidebar_headers'>
                 <h3>Direct Messages</h3>
-                <button>+</button>
+                <button onClick={showPopup}>+</button>
               </div>
               <div>
                 <h5>DM 1</h5>

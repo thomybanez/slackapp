@@ -2,7 +2,7 @@ import MemberList from "../js-component/MemberList";
 import MessageBar from "../js-component/MessageBar";
 import MessageLog from "../js-component/MessageLog";
 import Sidebar from "../js-component/Sidebar";
-import AddChannelPopup from "../js-component/AddChannelPopup";
+import CreateChannel from "../js-component/CreateChannel";
 import './interface.css'
 import { useState } from "react";
 
@@ -22,7 +22,7 @@ const SlackInterface = () => {
                 </div>
                 <MemberList />
             </div>
-            <AddChannelPopup popup={popup} showPopup={showPopup}/>
+            <CreateChannel popup={popup} showPopup={showPopup}/>
         </>
 
     )
