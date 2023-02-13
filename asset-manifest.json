@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/slackapp/static/css/main.9e93656d.css",
-    "main.js": "/slackapp/static/js/main.cc8722c0.js",
+    "main.css": "/slackapp/static/css/main.a20cc9af.css",
+    "main.js": "/slackapp/static/js/main.e123a006.js",
     "index.html": "/slackapp/index.html",
-    "main.9e93656d.css.map": "/slackapp/static/css/main.9e93656d.css.map",
-    "main.cc8722c0.js.map": "/slackapp/static/js/main.cc8722c0.js.map"
+    "main.a20cc9af.css.map": "/slackapp/static/css/main.a20cc9af.css.map",
+    "main.e123a006.js.map": "/slackapp/static/js/main.e123a006.js.map"
   },
   "entrypoints": [
-    "static/css/main.9e93656d.css",
-    "static/js/main.cc8722c0.js"
+    "static/css/main.a20cc9af.css",
+    "static/js/main.e123a006.js"
   ]
 }
