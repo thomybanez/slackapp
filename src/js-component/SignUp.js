@@ -1,6 +1,6 @@
 import React , { useState } from 'react'
 import '../js-component/css/signup.css'
-import { v4 as uuidv4 } from 'uuid'
+import SignUpComplete from './SignUpComplete';
 
 
 const SignUp = () =>{
@@ -10,7 +10,7 @@ const SignUp = () =>{
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [emailWarning, setEmailWarning] = useState("")
   const [passwordWarning, setPasswordWarning] = useState("")
-  const [userLoggedIn, setUserLoggedIn] = useState(null)
+  const [userSignedUp, setUserSignedUp] = useState("incomplete") 
  
 
     const registerUser = async (email, password, passwordConfirmation) => {
@@ -18,40 +18,47 @@ const SignUp = () =>{
         email,
         password,
         password_confirmation: passwordConfirmation,
-        uid: uuidv4()
         };
-
+        console.log("inside")
 
 
             try{
+                console.log("try")
                 const response = await fetch("http://206.189.91.54/api/v1/auth/", {
                     method : "POST",
                     headers : {"Content-Type": "application/json"},
                     body : JSON.stringify(requestBody)
-                })
+                })      
                 const rawData = await response.json();
-                console.log(rawData)
 
-                if (rawData.errors.email){ setEmailWarning(rawData.errors.email)}
-                if (rawData.errors.password){setPasswordWarning(rawData.errors.password)}
-                if (rawData.status === "success"){setUserLoggedIn(rawData.data.email)}
-            }
-            catch(error){
-                console.error("Error Found: "+ error)
-            }
-        }
-        
-        
+                console.log("1"+rawData.status)
+                console.log("2"+setUserSignedUp())
 
-        const handleSubmit = async (event) => {
-            event.preventDefault();
-            await registerUser(email, password, passwordConfirmation)
+                if (rawData.errors){ 
+                    setEmailWarning(rawData.errors.email)
+                    setPasswordWarning(rawData.errors.password)}                
+     
+                if (rawData.status === "success"){setUserSignedUp("complete")
+            console.log(userSignedUp)}
+                
+                
+                console.log("3"+rawData.status)
+                console.log("4"+setUserSignedUp)                
+            }
             
+            catch(error){
+                console.error(error)   
+            } 
         }
+
+        const handleSubmit = async (event) => {           
+            event.preventDefault();
+            await registerUser(email, password, passwordConfirmation)            
+        }   
 
     return(
-
-        <div className='main-container-flex'>
+        (userSignedUp === "complete") ? <SignUpComplete/> :
+        (<div className='main-container-flex'>
 
             <div className='main-left'>
                 <div className='main-left-content'>
@@ -105,6 +112,6 @@ const SignUp = () =>{
                     <div className='main-right-content-text'>This site is protected by reCAPTCHA and <br></br> the Google Privacy Policy.</div>                  
                 </div>                            
             </div>
-        </div>
-    )}
+        </div>)
+)}
 export default SignUp;
