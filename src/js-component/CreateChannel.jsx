@@ -28,26 +28,11 @@ const CreateChannel = (props) => {
     })
     const fetchlistData = await fetchlist.json()
     if(fetchlistData.errors) {
-      console.log('meron na brad')
+      alert('channel name already exists')
     } else {
       console.log('ayan bago yan lesgo')
     }
   }
-  const userChannelList = async () => {
-    const response = await fetch('http://206.189.91.54/api/v1/channels', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'access-token': 'CkOw4Cb-NOu3h-I_iZJQJA',
-        'client': 'qDQ6n3OMkViOKAGxzq5lvQ',
-        'expiry': '1677226169',
-        'uid': 'batch2625@example.com'
-      }
-    })
-    const channels = await response.json()
-    console.log(channels)
-  }
-  userChannelList()
   const SubmitHandler = (e) => {
     e.preventDefault()
     postChannel()
@@ -61,7 +46,7 @@ const CreateChannel = (props) => {
             <AiOutlineClose className='close_btn' onClick={showPopup} />
             <h3>Create Channel</h3>
             <label>Channel Name:</label>
-            <input type="text" name="name" value={name} onChange={(e) => HandleChange(e, setChannelData)} />
+            <input maxLength="15" type="text" name="name" value={name} onChange={(e) => HandleChange(e, setChannelData)} />
             <input id="submit" type="submit" />
           </form>
         </div>

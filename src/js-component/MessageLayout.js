@@ -1,9 +1,29 @@
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import HandleChange from '../utilities/HandleChange'
 import { IoSendSharp } from 'react-icons/io5'
+import { FaUserAlt } from 'react-icons/fa'
 import './components.css'
 
-const MessageBar = () =>  {
+function MessageLog() {
+  return (
+    <>
+      <div className='message_log'>
+        <FaUserAlt className='user_icon'/>
+        <div className='message_content'>
+          <div className='message_name_and_time'>
+            <span className='message_name'>Kumareng Maluho</span>
+            <span className='message_time'>11:59 pm</span>
+          </div>
+          <p>mars?</p>
+          <p>pautang naman...</p>
+          <p>damot mo naman...</p>
+        </div>
+      </div> 
+    </>
+  )
+}
+
+const MessageLayout = () =>  {
   const [messagelog, setMessagelog] = useState({
     receiver_id: "1024",
     receiver_class: "User",
@@ -12,7 +32,7 @@ const MessageBar = () =>  {
   })
   const { receiver_id, receiver_class, body } = messagelog
 
-  // send message API
+  // send direct message API
   const send = async () => {
     const sendBody = {
       receiver_id: receiver_id,
@@ -52,8 +72,12 @@ const MessageBar = () =>  {
     console.log(receiveData)
   }
   receive()
+
+  // channel message API
+
   return (
-    <>
+    <div className='message_interface'>
+      <MessageLog />
       <div className='message_bar'>
         <div>
           
@@ -73,8 +97,8 @@ const MessageBar = () =>  {
 
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
-export default MessageBar
+export default MessageLayout
