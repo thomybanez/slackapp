@@ -1,23 +1,9 @@
-import './App.css';
+import '../js-component/css/login.css';
 
-function App() {
+function Login() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React Kent
-        </a> */}
-
-        <div>
           <div className="container">
             <h1 className="label">Slack App Log in</h1>
             <form className="login_form" action="#" target='_blank' method="post" name="form" onsubmit="return validated()">
@@ -26,7 +12,7 @@ function App() {
 
               <div id="email_error">Please fill up your Email or Phone</div>
               <div className="font font2">Password</div>
-              <input type="password" name="password" />
+              <input className='input' type="password" name="password" />
 
               <div id="pass_error">Please fill up your Password</div>
 
@@ -35,10 +21,10 @@ function App() {
               <button className="create">Create an Account</button>
             </form>
           </div>	
-        </div>
+
       </header>
     </div>
   );
 }
 
-export default App;
+export default Login;
