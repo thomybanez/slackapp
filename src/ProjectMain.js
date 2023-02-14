@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom"
 import SlackInterface from "./pages/SlackInterface";
-import SignUp from "./js-component/SignUp"
-import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp"
+import Login from "./pages/Login";
 
 const ProjectMain = () => {
     return(
@@ -25,7 +25,7 @@ const ProjectMain = () => {
                 <Routes>                    
                     <Route path="signup" element={< SignUp />}>SignUp</Route>                    
                     <Route path="slackinterface" element={ < SlackInterface />}>Slack Interface</Route>
-                    <Route path="signin" element={<SignIn />}>Sign In</Route>
+                    <Route path="signin" element={< Login />}>Sign In</Route>
                 </Routes>            
         </div>
         </BrowserRouter>
