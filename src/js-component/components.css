@@ -72,11 +72,6 @@
     width: 95%;
     display: flex;
 }
-.message_name_and_time {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 .message_name {
     font-size: 20px;
     font-weight: 700;
