@@ -3,6 +3,7 @@ import '../js-component/css/signup.css'
 import SignUpComplete from '../js-component/SignUpComplete';
 
 
+
 const SignUp = () =>{
  
   const [email, setEmail] = useState("");
@@ -30,20 +31,17 @@ const SignUp = () =>{
                     body : JSON.stringify(requestBody)
                 })      
                 const rawData = await response.json();
-
-                console.log("1"+rawData.status)
-                console.log("2"+setUserSignedUp())
-
+   
                 if (rawData.errors){ 
                     setEmailWarning(rawData.errors.email)
                     setPasswordWarning(rawData.errors.password)}                
      
-                if (rawData.status === "success"){setUserSignedUp("complete")
-            console.log(userSignedUp)}
+                if (rawData.status === "success"){setUserSignedUp("complete")}
+
                 
                 
-                console.log("3"+rawData.status)
-                console.log("4"+setUserSignedUp)                
+                
+                   
             }
             
             catch(error){

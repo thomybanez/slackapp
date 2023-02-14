@@ -8,6 +8,10 @@ const [loginEmailWarning, setLoginEmailWarning] = useState("")
 const [loginPassword, setLoginPassword] = useState("")
 const [loginPasswordWarning, setLoginPasswordWarning] = useState("")
 const [loginSuccess, setLoginSuccess] = useState(false)
+const [loginAccessToken, setLoginAccessToken] = useState("")
+const [loginUID, setLoginUID] = useState("")
+const [loginExpiry, setLoginExpiry] = useState("")
+const [loginClient, setLoginClient] = useState("")
 
 const loginUser = async (loginEmail, loginPassword) =>{
       const requestBody = {
@@ -16,25 +20,37 @@ const loginUser = async (loginEmail, loginPassword) =>{
       }
 
         try{
-          console.log("try")
+
           const response = await fetch("http://206.189.91.54/api/v1/auth/sign_in", {
               method : "POST",
               headers : {"Content-Type": "application/json"},
               body : JSON.stringify(requestBody)
           })      
-          const rawData = await response.json();
-          console.log(rawData)          
-          console.log(rawData.data)
-          console.log("RAWDATA"+ rawData.success)
+          const rawData = await response.json(); 
+          const rawHeader = response.headers;
+          const accessToken = rawHeader.get('Access-Token')
+          const expiry = rawHeader.get('Expiry')
+          const client = rawHeader.get('Client')
+          const uid = rawHeader.get('UID')
 
           if (rawData.success === false){
               setLoginEmailWarning(rawData.errors[0])
               setLoginPasswordWarning(rawData.errors[0])      
           }
 
-          else if(rawData.data.email){
+          if(rawData.data.email){
               setLoginSuccess(true)
           }
+
+          if(rawHeader){
+            console.log(rawHeader)
+            console.log(accessToken + expiry + client + uid)
+            setLoginAccessToken(accessToken)
+            setLoginClient(client)
+            setLoginExpiry(expiry)
+            setLoginUID(uid)
+          }
+
       }
       catch(error){
           console.error(error)   
@@ -50,7 +66,7 @@ const onHandleSubmit = (e) =>{
 
 
   return (
-    loginSuccess ? <SlackInterface /> : (
+    loginSuccess ? <SlackInterface loggedToken={loginAccessToken} loggedClient={loginClient} loggedExpiry={loginExpiry} loggedUID = {loginUID}/> : (
     <div className="App">
       <header className="App-header">
           <div className="container">

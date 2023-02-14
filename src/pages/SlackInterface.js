@@ -5,12 +5,12 @@ import './interface.css'
 import { useState } from "react";
 import MessageLayout from "../js-component/MessageLayout";
 
-const SlackInterface = () => {
+const SlackInterface = ({loggedToken, loggedClient, loggedExpiry, loggedUID}) => {
     const [popup, setPopup] = useState(false)
     const showPopup = () => {
       setPopup(!popup)
-    }
-  
+    } 
+    
     return(
         <>
             <div className="slack_interface">
