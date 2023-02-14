@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import SignIn from "../pages/SignIn"
+import Login from "../pages/Login";
 
 const SignUpComplete = () =>{
     const [redirection, setRedirection] = useState(false)
     setTimeout(()=>{setRedirection(true);}, 5000);    
 
     return (
-    redirection === true ? <SignIn /> : 
+    redirection === true ? <Login /> : 
      (
         <div style={{
             display:"flex",

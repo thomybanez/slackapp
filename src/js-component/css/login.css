@@ -113,3 +113,9 @@
       padding-top: 30px;
   }  
 
+.invalid_error_login{
+    color: red;
+    font-size: 0.5em;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
