@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import './components.css'
 
 function Sidebar(props) {
-  const { showPopup } = props
+  const { showPopup, retrieveChannelData } = props
+
   // retrieve channel list on sidebar
   const [channelList, setChannelList] = useState([])
   const userChannelList = async () => {
@@ -22,12 +23,25 @@ function Sidebar(props) {
   useEffect(()=> {
     userChannelList()
   }, [])
-  const channel = channelList.map((obj)=>
-    <>
-      <div key={obj.id}>
-        <button className='cdm_buttons'>{obj.name}</button>
-      </div>
-    </>)
+  const Channel = () => {
+    return(
+      <>
+        {
+          channelList.length ? channelList.map((obj)=> 
+          (
+          <div key={obj.id}>
+            <button onClick={()=> retrieveChannelData(obj.id)} className='cdm_buttons'>{obj.name}</button>
+          </div>
+          ))
+          : <div>No Channels yet</div>
+        }
+      </>
+    )
+  }
+
+  // retrieve DM list on sidebar
+
+
   return (
     <> 
           <div className='sidebar'>
@@ -40,7 +54,7 @@ function Sidebar(props) {
                 <h3>Channels</h3>
                 <button className='plus_buttons' onClick={showPopup}>+</button>
               </div>
-              {channel}
+              <Channel />
               <div className='sidebar_headers'>
                 <h3>Direct Messages</h3>
                 <button className='plus_buttons' onClick={showPopup}>+</button>
