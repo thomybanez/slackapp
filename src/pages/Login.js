@@ -72,7 +72,7 @@ const onHandleSubmit = (e) =>{
           <div className="container">
             <h1 className="label">Slack App Login</h1>
 
-            <form className="login_form" onSubmit={onHandleSubmit} method="post" name="form" onsubmit="return validated()">
+            <form className="login_form" onSubmit={onHandleSubmit} method="post">
               <div className="font">Email</div>
                 <input onChange={(event)=>{setloginEmail(event.target.value)}} 
                 autoComplete="off" 
