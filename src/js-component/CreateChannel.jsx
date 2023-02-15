@@ -4,7 +4,7 @@ import './components.css'
 import { useState } from 'react'
 
 const CreateChannel = (props) => {
-  const { popup, showPopup } = props
+  const { channelcreated, popup, showPopup, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
   const [channelData, setChannelData] = useState({
       name: "",
       user_ids: []
@@ -19,10 +19,11 @@ const CreateChannel = (props) => {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        'access-token': 'CkOw4Cb-NOu3h-I_iZJQJA',
-        'client': 'qDQ6n3OMkViOKAGxzq5lvQ',
-        'expiry': '1677226169',
-        'uid': 'batch2625@example.com'
+        'access-token': `${loggedToken}`,
+        'client': `${loggedClient}`,
+        'expiry': `${loggedExpiry}`,
+        'uid': `${loggedUID}`
+
       },
       body: JSON.stringify(channelcheck)
     })
@@ -30,7 +31,7 @@ const CreateChannel = (props) => {
     if(fetchlistData.errors) {
       alert('channel name already exists')
     } else {
-      console.log('ayan bago yan lesgo')
+      channelcreated()
     }
   }
   const SubmitHandler = (e) => {
