@@ -16,21 +16,42 @@ const SlackInterface = ({loggedToken, loggedClient, loggedExpiry, loggedUID}) =>
         setReceiverId(id)
         setReceiverClass('Channel')
       }
+    const channelcreated = () => {
+        console.log('new channel created')
+    }
   
     return(
         <>
             <div className="slack_interface">
                 <Sidebar
                     showPopup={showPopup}
-                    retrieveChannelData={retrieveChannelData} />
+                    retrieveChannelData={retrieveChannelData}
+                    loggedToken={loggedToken}
+                    loggedClient={loggedClient}
+                    loggedExpiry={loggedExpiry}
+                    loggedUID={loggedUID}
+                    channelcreated={channelcreated} />
                 <MessageLayout
                     receiverClass={receiverClass}
-                    receiverId={receiverId} />
-                <MemberList />
+                    receiverId={receiverId}
+                    loggedToken={loggedToken}
+                    loggedClient={loggedClient}
+                    loggedExpiry={loggedExpiry}
+                    loggedUID={loggedUID} />
+                <MemberList
+                    loggedToken={loggedToken}
+                    loggedClient={loggedClient}
+                    loggedExpiry={loggedExpiry}
+                    loggedUID={loggedUID} />
             </div>
             <CreateChannel
+                channelcreated={channelcreated}
                 popup={popup}
-                showPopup={showPopup} />
+                showPopup={showPopup}
+                loggedToken={loggedToken}
+                loggedClient={loggedClient}
+                loggedExpiry={loggedExpiry}
+                loggedUID={loggedUID} />
         </>
 
     )

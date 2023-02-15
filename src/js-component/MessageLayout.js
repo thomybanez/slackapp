@@ -5,7 +5,7 @@ import { FaUserAlt } from 'react-icons/fa'
 import './components.css'
 
 function MessageLog(props) {
-  const { receiverClass, receiverId } = props
+  const { send, receiverClass, receiverId, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
   const [messages, setMessages] = useState([])
 
   // retrieving messages API (both channel and direct messages)
@@ -14,18 +14,22 @@ function MessageLog(props) {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
-        'access-token': 'CkOw4Cb-NOu3h-I_iZJQJA',
-        'client': 'qDQ6n3OMkViOKAGxzq5lvQ',
-        'expiry': '1677226169',
-        'uid': 'batch2625@example.com'
+        'access-token': `${loggedToken}`,
+        'client': `${loggedClient}`,
+        'expiry': `${loggedExpiry}`,
+        'uid': `${loggedUID}`
+
       }
     })
     const fetchlistData = await fetchlist.json()
     setMessages(fetchlistData.data)
   }
+  const refreshMessages = () => {
+    setInterval(messagelist, 10000)
+  }
   useEffect(()=> {
     messagelist()
-  }, [receiverId])
+  }, [receiverId, refreshMessages, send])
   const Messages = () => {
     return(
       <>
@@ -56,7 +60,7 @@ function MessageLog(props) {
 }
 
 const MessageLayout = (props) =>  {
-  const { receiverClass, receiverId } = props
+  const { receiverClass, receiverId, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
   const [messagelog, setMessagelog] = useState({
     body: "",
   })
@@ -70,32 +74,42 @@ const MessageLayout = (props) =>  {
       body: body
     }
 
-    const response = await fetch('http://206.189.91.54/api/v1/messages', {
+    await fetch('http://206.189.91.54/api/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'access-token': 'CkOw4Cb-NOu3h-I_iZJQJA',
-        'client': 'qDQ6n3OMkViOKAGxzq5lvQ',
-        'expiry': '1677226169',
-        'uid': 'batch2625@example.com'
+        'access-token': `${loggedToken}`,
+        'client': `${loggedClient}`,
+        'expiry': `${loggedExpiry}`,
+        'uid': `${loggedUID}`
+
       },
       body: JSON.stringify(sendBody)
     })
-
-    const sendData = await response.json()
-    console.log(sendData)
+    setMessagelog({
+      body: ''
+    })
   }
-
+  const SubmitHandler = (e) => {
+    e.preventDefault()
+    send()
+    return
+}
   return (
     <div className='message_interface'>
       <MessageLog
         receiverClass={receiverClass}
-        receiverId={receiverId} />
+        receiverId={receiverId}
+        loggedToken={loggedToken}
+        loggedClient={loggedClient}
+        loggedExpiry={loggedExpiry}
+        loggedUID={loggedUID}
+        send={send} />
       <div className='message_bar'>
         <div>
           
         </div>
-        <div className='message_field'>
+        <form onSubmit={SubmitHandler} className='message_field'>
           <input 
             className='input_field'
             name="body"
@@ -105,7 +119,7 @@ const MessageLayout = (props) =>  {
             onChange={(e)=> HandleChange(e, setMessagelog)}
             />
           <IoSendSharp onClick={send} />
-        </div>
+        </form>
         <div>
 
         </div>

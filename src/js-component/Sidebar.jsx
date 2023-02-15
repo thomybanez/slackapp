@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './components.css'
 
 function Sidebar(props) {
-  const { showPopup, retrieveChannelData } = props
+  const { channelcreated, showPopup, retrieveChannelData, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
 
   // retrieve channel list on sidebar
   const [channelList, setChannelList] = useState([])
@@ -11,10 +11,11 @@ function Sidebar(props) {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'access-token': 'CkOw4Cb-NOu3h-I_iZJQJA',
-        'client': 'qDQ6n3OMkViOKAGxzq5lvQ',
-        'expiry': '1677226169',
-        'uid': 'batch2625@example.com'
+        'access-token': `${loggedToken}`,
+        'client': `${loggedClient}`,
+        'expiry': `${loggedExpiry}`,
+        'uid': `${loggedUID}`
+
       }
     })
     const channels = await response.json()
@@ -22,7 +23,7 @@ function Sidebar(props) {
   }
   useEffect(()=> {
     userChannelList()
-  }, [])
+  }, [loggedToken, channelcreated])
   const Channel = () => {
     return(
       <>
