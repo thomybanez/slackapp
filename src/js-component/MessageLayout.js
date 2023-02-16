@@ -18,18 +18,17 @@ function MessageLog(props) {
         'client': `${loggedClient}`,
         'expiry': `${loggedExpiry}`,
         'uid': `${loggedUID}`
-
       }
     })
     const fetchlistData = await fetchlist.json()
     setMessages(fetchlistData.data)
   }
-  const refreshMessages = () => {
+  const refresh = () => {
     setInterval(messagelist, 10000)
   }
   useEffect(()=> {
     messagelist()
-  }, [receiverId, refreshMessages, send])
+  }, [receiverId, refresh, send])
   const Messages = () => {
     return(
       <>
@@ -96,7 +95,7 @@ const MessageLayout = (props) =>  {
     return
 }
   return (
-    <div className='message_interface'>
+    <div className={receiverId? 'message_interface' : 'message_interface hidden'}>
       <MessageLog
         receiverClass={receiverClass}
         receiverId={receiverId}
@@ -106,9 +105,6 @@ const MessageLayout = (props) =>  {
         loggedUID={loggedUID}
         send={send} />
       <div className='message_bar'>
-        <div>
-          
-        </div>
         <form onSubmit={SubmitHandler} className='message_field'>
           <input 
             className='input_field'
@@ -120,9 +116,6 @@ const MessageLayout = (props) =>  {
             />
           <IoSendSharp onClick={send} />
         </form>
-        <div>
-
-        </div>
       </div>
     </div>
   )
