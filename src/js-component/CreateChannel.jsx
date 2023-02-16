@@ -23,35 +23,36 @@ const CreateChannel = (props) => {
         'client': `${loggedClient}`,
         'expiry': `${loggedExpiry}`,
         'uid': `${loggedUID}`
-
       },
       body: JSON.stringify(channelcheck)
     })
     const fetchlistData = await fetchlist.json()
     if(fetchlistData.errors) {
-      alert('channel name already exists')
-    } else {
-      channelcreated()
+      alert(fetchlistData.errors)
     }
   }
   const SubmitHandler = (e) => {
     e.preventDefault()
     postChannel()
+    showPopup()
+    channelcreated()
     return
 }
 
     return (
-      <div className={popup? 'channel_form_popup active': 'channel_form_popup'}>
-        <div className='channel_form_content'>
-          <form id="form" onSubmit={SubmitHandler}>
-            <AiOutlineClose className='close_btn' onClick={showPopup} />
-            <h3>Create Channel</h3>
-            <label>Channel Name:</label>
-            <input maxLength="15" type="text" name="name" value={name} onChange={(e) => HandleChange(e, setChannelData)} />
-            <input id="submit" type="submit" />
-          </form>
+      <>
+        <div className={popup? 'form_popup active': 'form_popup'}>
+          <div className='form_content'>
+            <form className="form" onSubmit={SubmitHandler}>
+              <AiOutlineClose className='close_btn' onClick={showPopup} />
+              <h3>Create Channel</h3>
+              <label>Channel Name:</label>
+              <input maxLength="15" type="text" name="name" value={name} onChange={(e) => HandleChange(e, setChannelData)} />
+              <input id="submit" type="submit" value="Create" />
+            </form>
+          </div>
         </div>
-      </div>
+      </>
     )
   }
 
