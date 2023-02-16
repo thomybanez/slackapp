@@ -6,10 +6,19 @@ import { useState } from "react";
 import MessageLayout from "../js-component/MessageLayout";
 
 const SlackInterface = ({loggedToken, loggedClient, loggedExpiry, loggedUID}) => {
-    const [popup, setPopup] = useState(false)
-    const showPopup = () => {
-      setPopup(!popup)
+    const [popupAddChannel, setPopupAddChannel] = useState(false)
+    const showPopupAddChannel = () => {
+      setPopupAddChannel(!popupAddChannel)
     }
+    const [popupAddMessage, setPopupAddMessage] = useState(false)
+    const showPopupAddMessage = () => {
+        setPopupAddMessage(!popupAddMessage)
+    }
+    const [popupAddMembers, setPopupAddMembers] = useState(false)
+    const showPopupAddMembers = () => {
+        setPopupAddMembers(!popupAddMembers)
+    }
+    
     const [receiverId, setReceiverId] = useState('')
     const [receiverClass, setReceiverClass] = useState('')
     const retrieveChannelData = (id) => {
@@ -24,7 +33,8 @@ const SlackInterface = ({loggedToken, loggedClient, loggedExpiry, loggedUID}) =>
         <>
             <div className="slack_interface">
                 <Sidebar
-                    showPopup={showPopup}
+                    showPopupChannel={showPopupAddChannel}
+                    showPopupMessage={showPopupAddMessage}
                     retrieveChannelData={retrieveChannelData}
                     loggedToken={loggedToken}
                     loggedClient={loggedClient}
@@ -39,15 +49,19 @@ const SlackInterface = ({loggedToken, loggedClient, loggedExpiry, loggedUID}) =>
                     loggedExpiry={loggedExpiry}
                     loggedUID={loggedUID} />
                 <MemberList
+                    popup={popupAddMembers}
+                    showPopup={showPopupAddMembers}
+                    receiverId={receiverId}
                     loggedToken={loggedToken}
                     loggedClient={loggedClient}
                     loggedExpiry={loggedExpiry}
                     loggedUID={loggedUID} />
             </div>
             <CreateChannel
+                retrieveChannelData={retrieveChannelData}
                 channelcreated={channelcreated}
-                popup={popup}
-                showPopup={showPopup}
+                popup={popupAddChannel}
+                showPopup={showPopupAddChannel}
                 loggedToken={loggedToken}
                 loggedClient={loggedClient}
                 loggedExpiry={loggedExpiry}
