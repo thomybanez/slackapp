@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
 import './components.css'
 
@@ -6,24 +7,27 @@ function Sidebar(props) {
 
   // retrieve channel list on sidebar
   const [channelList, setChannelList] = useState([])
-  const userChannelList = async () => {
-    const response = await fetch('http://206.189.91.54/api/v1/channels', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'access-token': `${loggedToken}`,
-        'client': `${loggedClient}`,
-        'expiry': `${loggedExpiry}`,
-        'uid': `${loggedUID}`
 
-      }
-    })
-    const channels = await response.json()
-    setChannelList(channels.data)
-  }
-  useEffect(()=> {
-    userChannelList()
-  }, [loggedToken, channelcreated])
+  
+  useEffect(() => {
+    const userChannelList = async () => {
+      const response = await fetch('http://206.189.91.54/api/v1/channels', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'access-token': loggedToken,
+          'client': loggedClient,
+          'expiry': loggedExpiry,
+          'uid': loggedUID
+        }
+      });
+        const channels = await response.json();
+        setChannelList(channels.data);
+  };
+  
+  userChannelList();
+  }, [loggedToken, loggedClient, loggedExpiry, loggedUID, channelcreated]);
+
   const Channel = () => {
     return(
       <>
@@ -40,8 +44,7 @@ function Sidebar(props) {
     )
   }
 
-  // retrieve DM list on sidebar
-
+  /*retrieve DM list on sidebar*/
 
   return (
     <> 
