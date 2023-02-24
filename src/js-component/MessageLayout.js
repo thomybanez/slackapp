@@ -23,12 +23,17 @@ function MessageLog(props) {
     const fetchlistData = await fetchlist.json()
     setMessages(fetchlistData.data)
   }
+
   const refresh = () => {
     setInterval(messagelist, 10000)
   }
+
   useEffect(()=> {
     messagelist()
   }, [receiverId, refresh, send])
+
+
+
   const Messages = () => {
     return(
       <>
@@ -65,7 +70,7 @@ const MessageLayout = (props) =>  {
   })
   const { body } = messagelog
 
-  // send message API (both channels and direct messages)
+  /*send message API (both channels and direct messages)*/
   const send = async () => {
     const sendBody = {
       receiver_id: receiverId,
@@ -105,7 +110,7 @@ const MessageLayout = (props) =>  {
         loggedUID={loggedUID}
         send={send} />
       <div className='message_bar'>
-        <form onSubmit={SubmitHandler} className='message_field'>
+        <form autoComplete='off' onSubmit={SubmitHandler} className='message_field'>
           <input 
             className='input_field'
             name="body"
