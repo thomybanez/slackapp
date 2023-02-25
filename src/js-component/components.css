@@ -74,6 +74,8 @@
 /* message log */
 
 .message_log {
+    color: white;
+    width: 95%;
     display: flex;
     background-color: #fff;
     width: 95%;
