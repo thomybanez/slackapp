@@ -1,5 +1,4 @@
 
-
 /* message layout */
 .message_bar {
     width: 95%;
@@ -36,6 +35,9 @@
     width: 70%;
     align-self: flex-end;
     margin-bottom: 30px;
+    height: 95vh;
+    justify-content: flex-end;
+
 }
 
 /* sidebar & memberlist */
@@ -72,12 +74,22 @@
 /* message log */
 
 .message_log {
-    width: 95%;
     display: flex;
+    background-color: #fff;
+    width: 95%;
+    overflow: scroll;
+    height: 95vh;
+    padding: 10px;
+    margin: 20px;
+
 }
 .message_name {
-    font-size: 20px;
-    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(56, 22, 179);
+    margin-top: 25px;
+    margin-left: -10px;
 }
 .message_time {
     margin-left: 30px;
@@ -140,3 +152,17 @@
     right: 10px;
     cursor: pointer;
 }
+
+::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+    height: 1px; /* Height of the scrollbar */
+  }
+
+::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }

@@ -8,6 +8,7 @@ function MessageLog(props) {
   const { send, receiverClass, receiverId, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
   const [messages, setMessages] = useState([])
 
+
   // retrieving messages API (both channel and direct messages)
   const messagelist = async () => {
     const fetchlist = await fetch(`http://206.189.91.54/api/v1/messages?receiver_id=${receiverId}&receiver_class=${receiverClass}`, {
@@ -41,7 +42,7 @@ function MessageLog(props) {
           messages && messages.length ? messages.map((obj)=> 
           (
           <div key={obj.id}>
-            <div className='message_name'>Sender: {obj.sender.id}</div>
+            <div className='message_name'>`{obj.sender.uid} ({obj.sender.id})`</div>
             <div>{obj.body}</div>
           </div>
           ))

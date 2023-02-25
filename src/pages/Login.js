@@ -33,6 +33,8 @@ const loginUser = async (loginEmail, loginPassword) =>{
           const client = rawHeader.get('Client')
           const uid = rawHeader.get('UID')
 
+          console.log(rawData.data.id)
+
           if (rawData.success === false){
               setLoginEmailWarning(rawData.errors[0])
               setLoginPasswordWarning(rawData.errors[0])      
