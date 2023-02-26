@@ -20,12 +20,16 @@ const AddMessage = (props) => {
     }
     const submitHandler = (e) => {
         e.preventDefault()
-        userMessagecreated()
-        add()
-        setUserMessageData({
-            id: "",
-            name: ""
-        })
+        if(id && name) {
+            userMessagecreated()
+            add()
+            setUserMessageData({
+                id: "",
+                name: ""
+            })
+        } else {
+            alert('Please input complete details')
+        }
         return
     }
 
@@ -38,7 +42,7 @@ const AddMessage = (props) => {
                         <h3>Message User</h3>
                         <label>User ID:</label>
                         <input type="text" name="id" value={id} placeholder="User ID" onChange={(e) => HandleChange(e, setUserMessageData)} />
-                        <label>Name: </label>
+                        <label>Name:</label>
                         <input type="text" name="name" value={name} placeholder="Any Name" onChange={(e) => HandleChange(e, setUserMessageData)} />
                         <input className='submit' type="submit" value="Create"  />
                     </form>

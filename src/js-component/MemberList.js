@@ -50,7 +50,7 @@ function MemberList(props) {
     setMembers(fetchlistData.data.channel_members)
   }
   const refresh = () => {
-    setInterval(memberslist, 10000)
+    setInterval(memberslist, 5000)
   }
   useEffect(()=> {
     memberslist()

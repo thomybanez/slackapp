@@ -4,7 +4,7 @@ import './components.css'
 import { useState } from 'react'
 
 const CreateChannel = (props) => {
-  const { channelcreated, popup, showPopup, loggedToken, loggedClient, loggedExpiry, loggedUID, receiverName } = props
+  const { channelcreated, popup, showPopup, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
   const [channelData, setChannelData] = useState({
       name: "",
       user_ids: []
