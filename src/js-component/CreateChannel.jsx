@@ -4,7 +4,7 @@ import './components.css'
 import { useState } from 'react'
 
 const CreateChannel = (props) => {
-  const { channelcreated, popup, showPopup, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
+  const { channelcreated, popup, showPopup, loggedToken, loggedClient, loggedExpiry, loggedUID, receiverName } = props
   const [channelData, setChannelData] = useState({
       name: "",
       user_ids: []
@@ -34,26 +34,28 @@ const CreateChannel = (props) => {
   const SubmitHandler = (e) => {
     e.preventDefault()
     postChannel()
-    showPopup()
     channelcreated()
+    setChannelData({
+      name: ""
+    })
     return
-}
-
-    return (
-      <>
-        <div className={popup? 'form_popup active': 'form_popup'}>
-          <div className='form_content'>
-            <form className="form" onSubmit={SubmitHandler}>
-              <AiOutlineClose className='close_btn' onClick={showPopup} />
-              <h3>Create Channel</h3>
-              <label>Channel Name:</label>
-              <input maxLength="15" type="text" name="name" value={name} onChange={(e) => HandleChange(e, setChannelData)} />
-              <input id="submit" type="submit" value="Create" />
-            </form>
-          </div>
-        </div>
-      </>
-    )
   }
+
+  return (
+    <>
+      <div className={popup? 'form_popup active': 'form_popup'}>
+        <div className='form_content'>
+          <form className="form" onSubmit={SubmitHandler}>
+            <AiOutlineClose className='close_btn' onClick={showPopup} />
+            <h3>Create Channel</h3>
+            <label>Channel Name:</label>
+            <input maxLength="15" type="text" name="name" value={name} onChange={(e) => HandleChange(e, setChannelData)} />
+            <input className="submit" type="submit" value="Create" />
+          </form>
+        </div>
+      </div>
+    </>
+  )
+}
 
   export default CreateChannel

@@ -70,11 +70,15 @@
 }
 
 /* message log */
-
+.message_title {
+    color: white;
+}
 .message_log {
     color: white;
     width: 95%;
     display: flex;
+    overflow-y: scroll;
+    height: 500px;
 }
 .message_name {
     font-size: 20px;
@@ -125,7 +129,7 @@
     padding: 8px;
 }
 
-.form #submit {
+.form .submit {
     border-radius: 25px;
     font-size: 1.5rem;
     color: white;
