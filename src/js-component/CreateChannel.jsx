@@ -34,16 +34,18 @@ const CreateChannel = (props) => {
   const SubmitHandler = (e) => {
     e.preventDefault()
     postChannel()
-    showPopup()
     channelcreated()
+    setChannelData({
+      name: ""
+    })
     return
-}
+  }
 
     return (
       <>
         <div className={popup? 'form_popup active': 'form_popup'}>
           <div className='form_content'>
-            <form autoComplete='off' className="form" onSubmit={SubmitHandler}>
+            <form className="form" onSubmit={SubmitHandler}>
               <AiOutlineClose className='close_btn' onClick={showPopup} />
               <h3>Create Channel</h3>
               <label>Channel Name:</label>

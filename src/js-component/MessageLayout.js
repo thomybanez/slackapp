@@ -26,7 +26,7 @@ function MessageLog(props) {
   }
 
   const refresh = () => {
-    setInterval(messagelist, 10000)
+    setInterval(messagelist, 5000)
   }
 
   useEffect(()=> {
@@ -65,7 +65,7 @@ function MessageLog(props) {
 }
 
 const MessageLayout = (props) =>  {
-  const { receiverClass, receiverId, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
+  const { receiverClass, receiverId, receiverName, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
   const [messagelog, setMessagelog] = useState({
     body: "",
   })
@@ -99,9 +99,26 @@ const MessageLayout = (props) =>  {
     e.preventDefault()
     send()
     return
-}
+  }
+  const Header = () => {
+    if(receiverClass === 'Channel') {
+      return (
+        <>
+          <h2 className='message_title'>{receiverName}</h2>
+        </>
+      )
+    } else if(receiverClass === 'User') {
+      return (
+        <>
+          <h2 className='message_title'>{receiverId}</h2>
+        </>
+      )
+    }
+  }
+
   return (
     <div className={receiverId? 'message_interface' : 'message_interface hidden'}>
+      <Header />
       <MessageLog
         receiverClass={receiverClass}
         receiverId={receiverId}
