@@ -82,7 +82,7 @@ function MemberList(props) {
     <div className={receiverClass === 'Channel' ? 'sidebar_right' : 'sidebar_right hidden'}>
       <div className='sidebar_content'>
         <div className='sidebar_headers'>
-          <h3>Member List</h3>
+          <h3 className="sidebar-text">Member List</h3>
           <button onClick={showPopup} className='plus_buttons'>+</button>
         </div>
         <Members />

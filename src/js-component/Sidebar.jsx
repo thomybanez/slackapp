@@ -1,5 +1,5 @@
-import React from 'react'
 import { useEffect, useState } from 'react'
+import Logo from '../img/SlackApp Logo.png'
 import './components.css'
 
 function Sidebar(props) {
@@ -16,7 +16,7 @@ function Sidebar(props) {
         'client': `${loggedClient}`,
         'expiry': `${loggedExpiry}`,
         'uid': `${loggedUID}`
-
+        
       }
     })
     const channels = await response.json()
@@ -25,13 +25,14 @@ function Sidebar(props) {
   useEffect(()=> {
     userChannelList()
   }, [loggedToken, channelcreated])
+  
   const Channel = () => {
     return(
       <>
         {
           channelList && channelList.length ? channelList.map((obj)=> 
           (
-          <div key={obj.id}>
+          <div className="cdm_buttons_bg" key={obj.id}>
             <button onClick={()=> retrieveChannelData(obj.id, obj.name)} className='cdm_buttons'>{obj.name}</button>
           </div>
           ))
@@ -40,9 +41,24 @@ function Sidebar(props) {
       </>
     )
   }
-
+  
   // retrieve DM list on sidebar
-
+  
+  const User = () => {
+    return(
+      <>
+        {
+          userList && userList.length ? userList.map((obj)=>
+          (
+            <div key={obj.index}>
+              <button onClick={()=> retrieveUserMessageData(obj.id)} className='cdm_buttons'>{obj.name}</button>
+            </div>
+          ))
+          : <div>No Messages yet</div>
+        } 
+      </>
+        )
+  }
 
     console.log(userList)
   return (
@@ -50,16 +66,16 @@ function Sidebar(props) {
       <div className='sidebar'>
         <div className='sidebar_content'>
           <div className='sidebar_title'>
-            <h3>Slack App</h3>
+            <img className="logo-sidebar" src={Logo} alt=""/> 
           </div>
-          <h5 className=''>Home Page</h5>
+          <h5>Home Page</h5>
           <div className='sidebar_headers'>
-            <h3>Channels</h3>
+            <h3 className="sidebar-text">Channels</h3>
             <button className='plus_buttons' onClick={showPopupChannel}>+</button>
           </div>
           <Channel />
           <div className='sidebar_headers'>
-            <h3>Direct Messages</h3>
+            <h3 className="sidebar-text">Direct Messages</h3>
             <button className='plus_buttons' onClick={showPopupMessage}>+</button>
           </div>
           <User />
