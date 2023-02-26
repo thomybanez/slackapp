@@ -1,8 +1,8 @@
 import React , { useState } from 'react'
-import '../js-component/css/signup.css'
 import SignUpComplete from '../js-component/SignUpComplete';
-
-
+import Logo from '../img/SlackApp Logo.png'
+import { useNavigate } from 'react-router';
+import '../js-component/css/login-signup.css'
 
 const SignUp = () =>{
  
@@ -12,6 +12,11 @@ const SignUp = () =>{
   const [emailWarning, setEmailWarning] = useState("")
   const [passwordWarning, setPasswordWarning] = useState("")
   const [userSignedUp, setUserSignedUp] = useState("incomplete") 
+
+    const navigate = useNavigate();
+    const onLoginToAccount = () =>{
+        navigate('/signin')
+    }
  
 
     const registerUser = async (email, password, passwordConfirmation) => {
@@ -31,17 +36,13 @@ const SignUp = () =>{
                     body : JSON.stringify(requestBody)
                 })      
                 const rawData = await response.json();
+                console.log("ERROR"+ response)
    
                 if (rawData.errors){ 
-                    setEmailWarning(rawData.errors.email)
-                    setPasswordWarning(rawData.errors.password)}                
+                    setEmailWarning(rawData.errors[0])
+                    setPasswordWarning(rawData.errors[0])}                
      
                 if (rawData.status === "success"){setUserSignedUp("complete")}
-
-                
-                
-                
-                   
             }
             
             catch(error){
@@ -60,12 +61,9 @@ const SignUp = () =>{
 
             <div className='main-left'>
                 <div className='main-left-content'>
-                    <ul>
-                        <div className='main-left-content-title'>Slack App</div>
-                        <li className='main-left-content-list'>24/7 Uptime</li>
-                        <li className='main-left-content-list'>Send message for free</li>
-                        <li className='main-left-content-list'>Add friends all around the world</li>
-                        <li className='main-left-content-list'>Meet new people</li>                   
+                    <ul className='main-left-content-logo-slogan-container'>                        
+                        <img className='logo' src={Logo} alt="" />
+                        <li className='logo-slogan'>a place where projects are built together</li>                                 
                     </ul>
                 </div>                          
             </div>                
@@ -73,42 +71,42 @@ const SignUp = () =>{
             <div className='main-right'>
                 <div className='main-right-content'>
                     <div className='main-right-content-title'>Sign Up</div>
-                    <div className='main-right-content-text'>Sign up using your account</div>
-                        <div className='main-right-button-container'>
-                            <button className='main-right-quick-login-button'>Google</button>
-                            <button className='main-right-quick-login-button'>Apple</button>
-                        </div>
-                    <div className='main-right-content-text'>Or sign up with your email</div>
+                    <div className='main-right-content-text'>It's quick and easy.</div>
                     <form className='main-right-form'
                     onSubmit={handleSubmit}>
-                        <label className='main-right-form-label'>E-mail 
+                        <label className='main-right-form-label'>
                         <span className='main-right-form-warning'>{emailWarning}</span></label>
                         <input
-                        className='main-right-form-input'
+                        className='main-right-form-input'                        
                         onChange={(event)=> setEmail(event.target.value)}
+                        placeholder='Email'
                         value={email}
-                        type="email"></input>
+                        type="email"/>
+                       
 
-                        <label className='main-right-form-label'>Password 
+                        <label className='main-right-form-label'>
                         <span className='main-right-form-warning'>{passwordWarning}</span></label>
                         <input 
                         className='main-right-form-input'
                         onChange={(event)=> setPassword(event.target.value)}
+                        placeholder='Password'
                         value={password}
-                        type="password"></input>
+                        type="password"/>
 
 
-                        <label className='main-right-form-label'>Confirm Password
+                        <label className='main-right-form-label'>
                         <span className='main-right-form-warning'>{passwordWarning}</span></label>                        
                         <input className='main-right-form-input'
                         onChange={(event)=> setPasswordConfirmation(event.target.value)}
+                        placeholder="Confirm Password"
                         value={passwordConfirmation}
-                        type="password"></input>
+                        type="password"/>
                         <button className='main-right-submit-login-button'
                         type='submit'>Sign up</button>
-                    </form>                
+                    </form>                                   
                     <div className='main-right-content-text'>This site is protected by reCAPTCHA and <br></br> the Google Privacy Policy.</div>                  
-                </div>                            
+                    <p className='glow-link' onClick={onLoginToAccount}>Have an account? Login now...</p>
+                </div>                                            
             </div>
         </div>)
 )}

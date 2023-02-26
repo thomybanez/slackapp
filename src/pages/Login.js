@@ -1,6 +1,9 @@
-import '../js-component/css/login.css';
+import '../js-component/css/login-signup.css';
 import React, { useState } from 'react';
 import SlackInterface from "./SlackInterface"
+import Logo from '../img/SlackApp Logo.png'
+import { useNavigate } from 'react-router';
+
 
 function Login() {
 const [loginEmail, setloginEmail] = useState("")
@@ -12,6 +15,11 @@ const [loginAccessToken, setLoginAccessToken] = useState("")
 const [loginUID, setLoginUID] = useState("")
 const [loginExpiry, setLoginExpiry] = useState("")
 const [loginClient, setLoginClient] = useState("")
+
+const navigate = useNavigate();
+const onCreateAccountClick = () => {
+  navigate('/signup')
+}
 
 const loginUser = async (loginEmail, loginPassword) =>{
       const requestBody = {
@@ -33,20 +41,16 @@ const loginUser = async (loginEmail, loginPassword) =>{
           const client = rawHeader.get('Client')
           const uid = rawHeader.get('UID')
 
-          console.log(rawData.data.id)
-
-          if (rawData.success === false){
-              setLoginEmailWarning(rawData.errors[0])
-              setLoginPasswordWarning(rawData.errors[0])      
-          }
+          if (rawData.errors){ 
+            setLoginEmailWarning(rawData.errors)
+            setLoginPasswordWarning(rawData.errors)
+          }    
 
           if(rawData.data.email){
               setLoginSuccess(true)
           }
 
-          if(rawHeader){
-            console.log(rawHeader)
-            console.log(accessToken + expiry + client + uid)
+          if(rawHeader){  
             setLoginAccessToken(accessToken)
             setLoginClient(client)
             setLoginExpiry(expiry)
@@ -61,47 +65,68 @@ const loginUser = async (loginEmail, loginPassword) =>{
 
 const onHandleSubmit = (e) =>{
   e.preventDefault()
-  console.log(loginEmail)
-  console.log(loginPassword)
   loginUser(loginEmail, loginPassword)
 }
 
-
   return (
-    loginSuccess ? <SlackInterface loggedToken={loginAccessToken} loggedClient={loginClient} loggedExpiry={loginExpiry} loggedUID = {loginUID}/> : (
-    <div className="App">
-      <header className="App-header">
-          <div className="container">
-            <h1 className="label">Slack App Login</h1>
+    loginSuccess ? 
+    <SlackInterface 
+      loggedToken={loginAccessToken} 
+      loggedClient={loginClient} 
+      loggedExpiry={loginExpiry} 
+      loggedUID = {loginUID}/> 
 
-            <form className="login_form" onSubmit={onHandleSubmit} method="post" name="form">
-              <div className="font">Email</div>
-                <input onChange={(event)=>{setloginEmail(event.target.value)}} 
-                autoComplete="off" 
-                type="email"
-                value={loginEmail}
-                />
-            <p className='invalid_error_login'>{loginEmailWarning}</p>
-              
-              <div className="font font2">Password</div>
-              <input
-              onChange={(event)=>{setLoginPassword(event.target.value)}}
-              type="password"
-              value={loginPassword}
-              />
-            <p className='invalid_error_login'>{loginPasswordWarning}</p>
+      : (
 
-              <div id="pass_error">Please fill up your Password</div>
+    <div className='main-container-flex'>
+            <div className='main-left'>
+                <div className='main-left-content'>
+                    <ul className='main-left-content-logo-slogan-container'>                        
+                        <img className='logo' src={Logo} alt="" />
+                        <li className='logo-slogan'>a place where projects are built together</li>                                 
+                    </ul>
+                </div>                          
+            </div>                
 
-              <button className="login" type="submit">Login</button>
-              <div className="or">or</div>
-              <button className="create" type='submit'>Create an Account</button>
-            </form>
-            
-          </div>	
-      </header>
-    </div>)
-  );
+            <div className='main-right'>
+                <div className='main-right-content'>
+                  <div className='main-right-content-title'>Log In</div>
+                    <div className='main-right-content-text'>All servers are up</div>
+                    <form className='main-right-form'
+                    onSubmit={onHandleSubmit}>
+                        <label className='main-right-form-label'>
+                        <span className='main-right-form-warning'>{loginEmailWarning}</span></label>
+                        <input
+                            className='main-right-form-input'                        
+                            onChange={(event)=> setloginEmail(event.target.value)}
+                            placeholder='Email'
+                            value={loginEmail}
+                            type="email"/>
+                       
+
+                        <label className='main-right-form-label'>
+                        <span className='main-right-form-warning'>{loginPasswordWarning}</span></label>
+                        <input 
+                            className='main-right-form-input'
+                            onChange={(event)=> setLoginPassword(event.target.value)}
+                            placeholder='Password'
+                            value={loginPassword}
+                            type="password"/>
+                            
+                            <button className='main-right-submit-login-button'
+                            type='submit'>Submit</button>
+                      </form>
+                    
+                    <div className='main-right-content-text'>This site is protected by reCAPTCHA and <br></br> the Google Privacy Policy.</div>                  
+                    <button className='create-new-account' onClick={onCreateAccountClick}>Create new account</button>
+                </div>
+                                            
+            </div>
+        </div>)
+
+
+
+        )
 }
 
 export default Login;
