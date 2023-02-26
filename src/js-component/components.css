@@ -6,7 +6,8 @@
     border: 1px solid white;
     border-radius: 6px;
     padding: 5px;
-    background-color: rgb(150,150,150);
+    margin: 10px;
+    background-color: rgb(80, 80, 80);
 }
 
 .message_field {
@@ -22,11 +23,11 @@
     outline: none;
     color: white;
     width: 100%;
-    background-color: rgb(150,150,150);
+    background-color: rgb(80, 80, 80);
 }
 
 ::placeholder {
-    color: white;
+    color: #a9a9a9;
 }
 
 .message_interface {
@@ -47,6 +48,12 @@
     overflow-y: hidden;
     background-color: rgb(29,97,194);
     color: white;
+}
+.sidebar {
+    border-right: 1px solid white;
+}
+.sidebar_right {
+    border-left: 1px solid white;
 }
 .sidebar_right.hidden, .message_interface.hidden {
     display: none;
@@ -70,12 +77,21 @@
 }
 
 /* message log */
-
+.message_title {
+    color: white;
+}
 .message_log {
     color: white;
     width: 95%;
     display: flex;
+    align-items: flex-end;
+    overflow-y: scroll;
+    height: 500px;
 }
+.message_log::-webkit-scrollbar {
+    display: none;
+}
+
 .message_name {
     font-size: 20px;
     font-weight: 700;
@@ -107,7 +123,8 @@
 .form_content {
     height: 300px;
     width: 350px;
-    background: #fff;
+    color: white;
+    background: #1f1f1f;
     padding: 20px;
     border-radius: 5px;
     position: relative;
@@ -123,9 +140,13 @@
     display: block;
     width: 80%;
     padding: 8px;
+    background-color: rgb(80, 80, 80);
+    border: none;
+    outline: none;
+    color: white;
 }
 
-.form #submit {
+.form .submit {
     border-radius: 25px;
     font-size: 1.5rem;
     color: white;
