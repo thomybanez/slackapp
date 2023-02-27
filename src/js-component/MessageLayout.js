@@ -41,7 +41,7 @@ function MessageLog(props) {
         {
           messages && messages.length ? messages.map((obj)=> 
           (
-          <div key={obj.id}>
+          <div className='chat-lights' key={obj.id}>
             <div className='message_name'>{obj.sender.uid} ({obj.sender.id})</div>
             <div>{obj.body}</div>
           </div>
