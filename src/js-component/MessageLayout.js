@@ -46,7 +46,7 @@ function MessageLog(props) {
             <div>{obj.body}</div>
           </div>
           ))
-          : <div>No conversations yet</div>
+          : <div className='empty-conversation'>No conversations yet</div>
         }
       </>
     )

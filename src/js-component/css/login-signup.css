@@ -172,7 +172,7 @@
 }
 
 .main-right-content{    
-    height: 70vh;
+    height: 80vh;
     width: 25vw;
     border-radius: 10px;
     padding: 30px; 
@@ -251,7 +251,7 @@
 }
 
 .main-right-form-warning{
-    color: red;
+    color: red;    
 }
 
 ul{
