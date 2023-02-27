@@ -42,7 +42,7 @@ function MessageLog(props) {
           messages && messages.length ? messages.map((obj)=> 
           (
           <div key={obj.id}>
-            <div className='message_name'>{obj.sender.uid} ({obj.sender.id})</div>
+            <div className='message_name'>{obj.sender.uid} ({obj.sender.id})<span className='message_time'>{obj.created_at.slice(11,16)}</span></div>
             <div>{obj.body}</div>
           </div>
           ))
