@@ -73,12 +73,16 @@ function Sidebar(props) {
             <h3 className="sidebar-text">Channels</h3>
             <button className='plus_buttons' onClick={showPopupChannel}>+</button>
           </div>
-          <Channel />
+          <div className="channel_content">
+            <Channel />
+          </div>
           <div className='sidebar_headers'>
             <h3 className="sidebar-text">Direct Messages</h3>
             <button className='plus_buttons' onClick={showPopupMessage}>+</button>
           </div>
-          <User />
+          <div className="user_content">
+            <User />
+          </div>
           <button className="logout" onClick={()=> window.location.href="/"}>Logout</button>
         </div>
       </div>
