@@ -4,7 +4,7 @@ import HandleChange from '../utilities/HandleChange'
 import { useEffect } from 'react'
 
 function MemberList(props) {
-  const { popup, showPopup, retrieveChannelData, receiverId, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
+  const { popup, showPopup, retrieveChannelData, receiverId, receiverClass, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
   const [members, setMembers] = useState([])
 
    // add members to channel
@@ -50,7 +50,7 @@ function MemberList(props) {
     setMembers(fetchlistData.data.channel_members)
   }
   const refresh = () => {
-    setInterval(memberslist, 10000)
+    setInterval(memberslist, 5000)
   }
   useEffect(()=> {
     memberslist()
@@ -60,6 +60,7 @@ function MemberList(props) {
     e.preventDefault()
     showPopup()
     add()
+    setAddMembers({member_id:""})
     return
   }
 
@@ -78,10 +79,10 @@ function MemberList(props) {
   }
   return (
     <>
-    <div className={receiverId? 'sidebar_right' : 'sidebar_right hidden'}>
+    <div className={receiverClass === 'Channel' ? 'sidebar_right' : 'sidebar_right hidden'}>
       <div className='sidebar_content'>
         <div className='sidebar_headers'>
-          <h3>Member List</h3>
+          <h3 className="sidebar-text">Member List</h3>
           <button onClick={showPopup} className='plus_buttons'>+</button>
         </div>
         <Members />
@@ -94,7 +95,7 @@ function MemberList(props) {
             <h3>Add Member</h3>
             <label>Member ID:</label>
             <input maxLength="10" type="text" name="member_id" value={member_id} onChange={(e)=> HandleChange(e, setAddMembers)} />
-            <input id="submit" type="submit" value="Add" />
+            <input className="submit" type="submit" value="Add" />
           </form>
         </div>
       </div>

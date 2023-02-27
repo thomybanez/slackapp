@@ -6,6 +6,9 @@ import SignUp from "./pages/SignUp"
 import Login from "./pages/Login";
 
 const ProjectMain = () => {
+
+    
+
     return(
         <BrowserRouter>
         <div 
@@ -13,8 +16,8 @@ const ProjectMain = () => {
         {{
             height: "100vh",
             width: "100vw",           
-        }}>
-                <div style={{fontSize:"1em", textAlign:"center", fontWeight:"bold", backgroundColor:"rgb(29,97,194)",color:"white"}}>
+        }}>                                
+                <div style={{display:"none",fontSize:"1em", textAlign:"center", fontWeight:"bold", backgroundColor:"rgb(29,97,194)",color:"white"}}>
                 Choose Your Project
                 <div style={{textAlign:"center"}}>
                 <Link style={{margin:"0 10px", color:"white"}} to="signin">Sign In</Link>
@@ -22,7 +25,8 @@ const ProjectMain = () => {
                 <Link style={{margin:"0 10px", color:"white"}} to="slackinterface">Slack Interface</Link>
                 </div>
                 </div>
-                <Routes>                    
+                <Routes>
+                    <Route exact path="/" element={<Login />} />
                     <Route path="signup" element={< SignUp />}>SignUp</Route>                    
                     <Route path="slackinterface" element={ < SlackInterface />}>Slack Interface</Route>
                     <Route path="signin" element={< Login />}>Sign In</Route>

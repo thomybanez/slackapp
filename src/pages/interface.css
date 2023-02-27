@@ -9,6 +9,7 @@ body {
   
 
 .slack_interface {
+    background-color: rgb(240,240,240);
     display: flex;
     flex-direction: row;
     height: 100vh;

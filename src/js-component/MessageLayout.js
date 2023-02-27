@@ -8,6 +8,7 @@ function MessageLog(props) {
   const { send, receiverClass, receiverId, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
   const [messages, setMessages] = useState([])
 
+
   // retrieving messages API (both channel and direct messages)
   const messagelist = async () => {
     const fetchlist = await fetch(`http://206.189.91.54/api/v1/messages?receiver_id=${receiverId}&receiver_class=${receiverClass}`, {
@@ -23,12 +24,17 @@ function MessageLog(props) {
     const fetchlistData = await fetchlist.json()
     setMessages(fetchlistData.data)
   }
+
   const refresh = () => {
-    setInterval(messagelist, 10000)
+    setInterval(messagelist, 5000)
   }
+
   useEffect(()=> {
     messagelist()
   }, [receiverId, refresh, send])
+
+
+
   const Messages = () => {
     return(
       <>
@@ -36,7 +42,7 @@ function MessageLog(props) {
           messages && messages.length ? messages.map((obj)=> 
           (
           <div key={obj.id}>
-            <div className='message_name'>Sender: {obj.sender.id}</div>
+            <div className='message_name'>`{obj.sender.uid} ({obj.sender.id})`</div>
             <div>{obj.body}</div>
           </div>
           ))
@@ -59,13 +65,13 @@ function MessageLog(props) {
 }
 
 const MessageLayout = (props) =>  {
-  const { receiverClass, receiverId, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
+  const { receiverClass, receiverId, receiverName, loggedToken, loggedClient, loggedExpiry, loggedUID } = props
   const [messagelog, setMessagelog] = useState({
     body: "",
   })
   const { body } = messagelog
 
-  // send message API (both channels and direct messages)
+  /*send message API (both channels and direct messages)*/
   const send = async () => {
     const sendBody = {
       receiver_id: receiverId,
@@ -93,9 +99,26 @@ const MessageLayout = (props) =>  {
     e.preventDefault()
     send()
     return
-}
+  }
+  const Header = () => {
+    if(receiverClass === 'Channel') {
+      return (
+        <>
+          <h2 className='message_title'>{receiverName}</h2>
+        </>
+      )
+    } else if(receiverClass === 'User') {
+      return (
+        <>
+          <h2 className='message_title'>{receiverId}</h2>
+        </>
+      )
+    }
+  }
+
   return (
     <div className={receiverId? 'message_interface' : 'message_interface hidden'}>
+      <Header />
       <MessageLog
         receiverClass={receiverClass}
         receiverId={receiverId}
@@ -105,7 +128,7 @@ const MessageLayout = (props) =>  {
         loggedUID={loggedUID}
         send={send} />
       <div className='message_bar'>
-        <form onSubmit={SubmitHandler} className='message_field'>
+        <form autoComplete='off' onSubmit={SubmitHandler} className='message_field'>
           <input 
             className='input_field'
             name="body"

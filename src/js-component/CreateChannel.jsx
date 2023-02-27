@@ -34,10 +34,12 @@ const CreateChannel = (props) => {
   const SubmitHandler = (e) => {
     e.preventDefault()
     postChannel()
-    showPopup()
     channelcreated()
+    setChannelData({
+      name: ""
+    })
     return
-}
+  }
 
     return (
       <>
@@ -48,7 +50,7 @@ const CreateChannel = (props) => {
               <h3>Create Channel</h3>
               <label>Channel Name:</label>
               <input maxLength="15" type="text" name="name" value={name} onChange={(e) => HandleChange(e, setChannelData)} />
-              <input id="submit" type="submit" value="Create" />
+              <input className='submit' type="submit" value="Create" />
             </form>
           </div>
         </div>
