@@ -30,6 +30,7 @@ const AddMessage = (props) => {
         } else {
             alert('Please input complete details')
         }
+        showPopup()
         return
     }
 

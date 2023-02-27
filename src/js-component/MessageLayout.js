@@ -42,7 +42,7 @@ function MessageLog(props) {
           messages && messages.length ? messages.map((obj)=> 
           (
           <div key={obj.id}>
-            <div className='message_name'>`{obj.sender.uid} ({obj.sender.id})`</div>
+            <div className='message_name'>{obj.sender.uid} ({obj.sender.id})</div>
             <div>{obj.body}</div>
           </div>
           ))
@@ -55,7 +55,6 @@ function MessageLog(props) {
   return (
     <>
       <div className='message_log'>
-        <FaUserAlt className='user_icon'/>
         <div className='message_content'>
             <Messages />
         </div>
