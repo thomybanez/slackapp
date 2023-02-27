@@ -76,7 +76,7 @@ const SlackInterface = ({loggedToken, loggedClient, loggedExpiry, loggedUID}) =>
                     loggedToken={loggedToken}
                     loggedClient={loggedClient}
                     loggedExpiry={loggedExpiry}
-                    loggedUID={loggedUID} />
+                    loggedUID={loggedUID} />                
             </div>
             <CreateChannel
                 popup={popupAddChannel}

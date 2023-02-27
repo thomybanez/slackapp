@@ -1,5 +1,19 @@
 
 /* message layout */
+.logout{
+    display: flex;
+    position: absolute;
+    right: 100px;
+    bottom: 20px;
+    font-size: 1em;
+    color: white;
+    background-color: rgb(29,97,194);
+    padding: 5px 10px;
+    border-radius: 10px 10px;
+    font-weight: bold;
+    border: 2px solid white;
+}
+
 .message_bar {
     width: 95%;
     border: 1px solid white;
@@ -102,7 +116,7 @@
 
 /* message log */
 .message_title {
-    color: rgb(40, 40, 40);
+    color: rgb(29,97,194);
 }
 .message_log {
     background-color: white;
