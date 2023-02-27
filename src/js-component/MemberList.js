@@ -86,6 +86,7 @@ function MemberList(props) {
           <button onClick={showPopup} className='plus_buttons'>+</button>
         </div>
         <Members />
+        
       </div>
     </div>
       <div className={popup? 'form_popup active': 'form_popup'}>

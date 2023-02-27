@@ -79,6 +79,7 @@ function Sidebar(props) {
             <button className='plus_buttons' onClick={showPopupMessage}>+</button>
           </div>
           <User />
+          <button className="logout" onClick={()=> window.location.href="/"}>Logout</button>
         </div>
       </div>
     </>
