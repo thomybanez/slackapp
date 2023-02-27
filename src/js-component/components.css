@@ -78,6 +78,7 @@
 .sidebar_right {
     color: rgb(124,125,127);
     border-left: 1px solid white;
+    padding-top: 107px;
 }
 .sidebar_right.hidden, .message_interface.hidden {
     display: none;
