@@ -61,6 +61,7 @@
     border-right: 1px solid white;
 }
 .sidebar_right {
+    color: rgb(124,125,127);
     border-left: 1px solid white;
 }
 .sidebar_right.hidden, .message_interface.hidden {
@@ -71,12 +72,14 @@
 }
 .sidebar_headers {
     display: flex;
+    color: rgb(29,97,194);
     justify-content: space-between;
 }
+.plus_buttons {
+    color: rgb(29,97,194);
+}
 .plus_buttons, .cdm_buttons{
-    background-color: rgb(29,97,194);
     border: none;
-    color: white;
     font-size: 30px;
     cursor: pointer;
 }
@@ -99,6 +102,7 @@
 /* message log */
 .message_title {
     color: rgb(40, 40, 40);
+    margin-bottom: 30px;
 }
 .message_log {
     background-color: white;
@@ -107,9 +111,17 @@
     color: rgb(40, 40, 40);
     font-weight: 500;
     width: 95%;
+    height: 80%;
     display: flex;
+    flex-direction: column-reverse;
+    overflow: scroll;
 }
-
+.message_log::-webkit-scrollbar {
+    display: none;
+}
+.message_content{ 
+    padding: 0 0 10px 20px;
+}
 .message_name {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -120,11 +132,6 @@
 }
 .message_time {
     margin-left: 30px;
-}
-.user_icon {
-    width: 40px;
-    height: 40px;
-    margin: 20px 10px;
 }
 
 /* add channel popup */
@@ -209,7 +216,6 @@
     display: inline-block;
     text-decoration: none;
     position: relative;
-    color: rgb(29,97,194);
   }
   
   .sidebar-text::before {
