@@ -11,6 +11,8 @@ const SignUp = () =>{
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [emailWarning, setEmailWarning] = useState("")
   const [passwordWarning, setPasswordWarning] = useState("")
+  const [passwordConfirmationWarning, setPasswordConfirmationWarning] = useState("")
+  
   const [userSignedUp, setUserSignedUp] = useState("incomplete") 
 
     const navigate = useNavigate();
@@ -20,38 +22,67 @@ const SignUp = () =>{
  
 
     const registerUser = async (email, password, passwordConfirmation) => {
+
+        
+
         const requestBody = {
         email,
         password,
         password_confirmation: passwordConfirmation,
-        };
-        console.log("inside")
+        };  
 
 
-            try{
-                console.log("try")
+            try{        
                 const response = await fetch("http://206.189.91.54/api/v1/auth/", {
                     method : "POST",
                     headers : {"Content-Type": "application/json"},
                     body : JSON.stringify(requestBody)
                 })      
-                const rawData = await response.json();
-                console.log("ERROR"+ response)
-   
-                if (rawData.errors){ 
-                    setEmailWarning(rawData.errors[0])
-                    setPasswordWarning(rawData.errors[0])}                
+                const rawData = await response.json();     
+    
+       
+                if(rawData.errors.email ? setEmailWarning(rawData.errors.email) : setEmailWarning(""))
+                try {
+                    setEmailWarning(rawData.errors.email ? rawData.errors.email : '');
+                  } catch (error) {
+                    console.error(error);                    
+                  }
+
+                if(rawData.errors.password ? setPasswordWarning(rawData.errors.password) : setPasswordWarning(""))
+                try {
+                    setPasswordWarning(rawData.errors.password ? rawData.errors.password : '');
+                  } catch (error) {
+                    console.error(error);                    
+                  }
+                
+                if(rawData.errors.password_confirmation ? setPasswordConfirmationWarning(rawData.errors.password_confirmation) : setPasswordConfirmationWarning(""))
+                try {
+                    setPasswordConfirmationWarning(rawData.errors.password_confirmation ? rawData.errors.password_confirmation : '');
+                  } catch (error) {
+                    console.error(error);                    
+                  }
+           
      
-                if (rawData.status === "success"){setUserSignedUp("complete")}
+                  if (rawData.status === "success") {
+                    setUserSignedUp("complete");
+                  } else {
+                    setUserSignedUp("incomplete");
+                  }
             }
             
             catch(error){
-                console.error(error)   
+                setUserSignedUp("complete")
             } 
         }
 
         const handleSubmit = async (event) => {           
             event.preventDefault();
+
+            if (!email) {
+                console.error('email undefined');
+                return;
+              }
+
             await registerUser(email, password, passwordConfirmation)            
         }   
 
@@ -85,7 +116,7 @@ const SignUp = () =>{
                        
 
                         <label className='main-right-form-label'>
-                        <span className='main-right-form-warning'>{passwordWarning}</span></label>
+                        <span className='main-right-form-warning'>{passwordWarning}{passwordConfirmationWarning}</span></label>
                         <input 
                         className='main-right-form-input'
                         onChange={(event)=> setPassword(event.target.value)}
@@ -95,12 +126,12 @@ const SignUp = () =>{
 
 
                         <label className='main-right-form-label'>
-                        <span className='main-right-form-warning'>{passwordWarning}</span></label>                        
+                        <span className='main-right-form-warning'>{passwordWarning}{passwordConfirmationWarning}</span></label>                        
                         <input className='main-right-form-input'
                         onChange={(event)=> setPasswordConfirmation(event.target.value)}
                         placeholder="Confirm Password"
                         value={passwordConfirmation}
-                        type="password"/>
+                        type="password"/>                        
                         <button className='main-right-submit-login-button'
                         type='submit'>Sign up</button>
                     </form>                                   
