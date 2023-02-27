@@ -16,6 +16,7 @@
     color: white;
     display: flex;
     justify-content: space-between;
+    
 }
 .input_field {
     border: none;
@@ -79,6 +80,9 @@
     color: white;
     font-size: 30px;
     cursor: pointer;
+    height: 4vh;    
+    display: flex;
+    align-items: center;
 }
 .cdm_buttons {
     margin: 5px;
@@ -106,8 +110,12 @@
     border-radius: 10px 10px;
     color: rgb(40, 40, 40);
     font-weight: 500;
+    height: 70vh;
     width: 95%;
     display: flex;
+    border: 3px solid rgb(29,97,194);    
+    overflow: scroll;
+    margin-top: 20px;
 }
 
 .message_name {
@@ -228,4 +236,16 @@
   .sidebar-text:hover::before {
     visibility: visible;
     transform: scaleX(1);
+  }
+
+  .direct-messaging{
+    color:#1f1f1f
+  }
+
+  .empty-conversation{    
+    width: 50vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
   }

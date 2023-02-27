@@ -69,7 +69,7 @@ function MemberList(props) {
       <>
         {
           members && members.map((obj)=> (
-            <div key={obj.id}>
+            <div className="cdm_buttons" key={obj.id}>
               <p>{obj.user_id}</p>
             </div>
           ))

@@ -50,11 +50,11 @@ function Sidebar(props) {
         {
           userList && userList.length ? userList.map((obj)=>
           (
-            <div key={obj.index}>
+            <div className="cdm_buttons" key={obj.index}>
               <button onClick={()=> retrieveUserMessageData(obj.id)} className='cdm_buttons'>{obj.name}</button>
             </div>
           ))
-          : <div>No Messages yet</div>
+          : <div className="cdm_buttons">No Messages yet</div>
         } 
       </>
         )
