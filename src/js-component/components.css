@@ -103,7 +103,7 @@
     align-items: center;
 }
 .cdm_buttons {
-    margin: 5px;
+    width: 100%;
     font-size: 16px;
     font-weight: bold;
     color: rgb(124,125,127);
@@ -154,6 +154,7 @@
     margin-top: 25px;
     margin-left: -10px;
 }
+
 .message_time {
     margin-left: 30px;
 }
