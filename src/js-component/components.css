@@ -103,7 +103,7 @@
     align-items: center;
 }
 .cdm_buttons {
-    margin: 5px;
+    width: 100%;
     font-size: 16px;
     font-weight: bold;
     color: rgb(124,125,127);
