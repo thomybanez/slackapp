@@ -26,7 +26,7 @@ const ProjectMain = () => {
                 </div>
                 </div>
                 <Routes>
-                    <Route exact path="signin" element={<Login />} />
+                    <Route exact path="/" element={<Login />} />
                     <Route path="signup" element={< SignUp />}>SignUp</Route>                    
                     <Route path="slackinterface" element={ < SlackInterface />}>Slack Interface</Route>
                     <Route path="signin" element={< Login />}>Sign In</Route>
